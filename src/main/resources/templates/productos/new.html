@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />      
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/productos/save}" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Nombre</label>
+            <input  type="text" class="form-control" name="nombre" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Descripcion</label>
+            <input  type="text" class="form-control" name="descripcion" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPrecio1" class="form-label">Precio</label>
+            <input  type="text" class="form-control" name="precio" id="exampleInputPrecio1">            
+          </div>        
+          <div class="mb-3">
+            <label for="exampleImg">Imagen</label>
+            <input type="file" class="file-input" name="imagen" id="exampleImg" accept="image/png, image/jpeg">
+          </div>
+          <a class="btn btn-primary" th:href="@{/productos/list}" href="#" role="button">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

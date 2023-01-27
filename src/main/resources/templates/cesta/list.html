@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <div class="container">
+
+    <ul>
+      <!-- <li><label th:text="'Codigo: '+${session.cesta.cliente.codigo}">---</label></li> -->
+      <li>-- Cliente --</li>
+      <li><label th:text="'Nombre: '+${session.cesta.cliente.nombre}">---</label></li>
+      <li><label th:text="'Apellidos: '+${session.cesta.cliente.apellidos}">---</label></li>
+      <li><label th:text="'Email: '+${session.cesta.cliente.email}">---</label></li>
+      <li><label th:text="'Numero: '+${session.cesta.cliente.numero}">---</label></li>
+      <li><label th:text="'Direccion: '+${session.cesta.cliente.direccion}">---</label></li>
+      <li><label th:text="${session.cesta.cliente.vip} ? 'Vip: SI' : 'Vip: NO'">---</label></li>
+    </ul>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" >Codigo</th>
+          <th scope="col" >Nombre del producto</th>
+          <th scope="col" >Precio</th>
+          <th scope="col" >Cantidad</th>
+          <th scope="col" >Subtotal</th>        
+          <th scope="col" >---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="detalleProducto : ${session.cesta.detallePedidos}">
+          <th scope="row" th:text="${detalleProducto.producto.codigo}">#</th>
+          <td th:text="${detalleProducto.producto.nombre}">---</td>
+          <td th:text="${detalleProducto.producto.precio}+€">---</td>
+          <td th:text="${detalleProducto.cantidad}">---</td>
+          <td th:text="${detalleProducto.subTotal}+€">---</td>          
+          <td>           
+            <a class="btn btn-primary" th:href="@{/cesta/delete/}+${detalleProducto.producto.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>          
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="text-align: right;"><h4>Total:</h4> </td>
+          <td><h4 th:text="${session.cesta.CalcularTotal}+€"></h4></td>
+        </tr>
+      </tbody>
+    </table>
+    <h5 >Listado de la cesta</h5>
+    <a class="btn btn-primary" th:href="@{/pedidos/save}" href="#" role="button">Tramitar Pedido</a>              
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+</body>
+
+</html>

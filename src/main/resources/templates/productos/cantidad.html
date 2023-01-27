@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/productos/anadir/} + ${producto.codigo}" method="post" class="d-flex">
+          
+          <div>
+            <input type="hidden" th:value="${producto.codigo}" name="codigo">
+            <div class="mb-3">
+              <label class="form-label">Nombre:</label>
+              <label th:text="${producto.nombre}" class="form-label">Nombre</label>
+              
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripcion:</label>              
+              <label th:text="${producto.descripcion}" class="form-label">Descripcion</label>              
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Precio:</label>                    
+              <label th:text="${producto.precio}+€" class="form-label">Precio</label>                    
+            </div>
+            <label for="cantidadid"> cantidad:</label>
+            <input type="number" name="cantidad" id="cantidadid" value="1" min="0">
+            <a class="btn btn-primary" th:href="@{/productos/list}" href="#" role="button">Volver</a>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          </div>        
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

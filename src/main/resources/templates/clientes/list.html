@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <div class="container">
+        <h1 th:text="#{clientes.list.titulo}">Clientes</h1>
+        <a class="btn btn-primary" th:text="#{clientes.list.nuevoCliente}" th:href="@{/clientes/create}" href="new.html"
+        role="button">
+        Crear</a>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" th:text="#{clientes.list.codigo}">Codigo</th>
+          <th scope="col" th:text="#{clientes.list.nombre}">Nombre</th>
+          <th scope="col" th:text="#{clientes.list.apellidos}">Apellidos</th>
+          <th scope="col" th:text="#{clientes.list.email}">Email</th>
+          <th scope="col" th:text="#{clientes.list.numero}">Numero</th>
+          <th scope="col" th:text="#{clientes.list.direccion}">Direccion</th>
+          <th scope="col" th:text="#{clientes.list.vip}">Vip</th>
+          <th scope="col">---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="cliente : ${clientes}">
+          <th scope="row" th:text="${cliente.codigo}">#</th>
+          <td th:text="${cliente.nombre}">---</td>
+          <td th:text="${cliente.apellidos}">---</td>
+          <td th:text="${cliente.email}">---</td>
+          <td th:text="${cliente.numero}">---</td>
+          <td th:text="${cliente.direccion}">---</td>
+          <td th:text="${cliente.vip} ? 'SI' : 'NO'">---</td>
+          <td>          
+            <a class="btn btn-primary" th:text="#{clientes.list.editar}" th:href="@{/clientes/edit?codigo=}+${cliente.codigo}" href="edit.html"
+              role="button">
+              Editar</a>
+            <a class="btn btn-primary" th:text="#{clientes.list.borrar}" th:href="@{/clientes/delete/}+${cliente.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>
+            <a class="btn btn-primary" th:href="@{/clientes/comprador/}+${cliente.codigo}" href="#" role="button"><i class="bi bi-person-plus-fill"></i>Elegir cliente</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div th:replace="commons/pagination :: pagination" class="container" />
+    <h5 th:text="#{clientes.list.pie}"></h5>
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+</body>
+
+</html>

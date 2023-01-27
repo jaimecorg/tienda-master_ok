@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/clientes/update}" method="post">
+          <input type="hidden" th:value="${cliente.codigo}" name="codigo">
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Nombre</label>
+            <input th:value="${cliente.nombre}" type="text" name="nombre" class="form-control" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Apellidos</label>
+            <input th:value="${cliente.apellidos}" type="text" name="apellidos" class="form-control" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input th:value="${cliente.email}" type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Numero</label>
+            <input th:value="${cliente.numero}" type="number" class="form-control" name="numero" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Direccion</label>
+            <input th:value="${cliente.direccion}" type="text" class="form-control" name="direccion" id="exampleInput1">
+          </div>
+          <div class="mb-3 form-check">
+            <input th:checked="${cliente.vip} ? 'SI' : 'NO'" type="checkbox" name="vip" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Vip</label>
+          </div>
+          <a class="btn btn-primary" th:href="@{/clientes/list}" href="#" role="button">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

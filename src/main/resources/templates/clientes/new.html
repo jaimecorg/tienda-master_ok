@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+      <!-- CARD -->
+      <!-- 
+      <div class="container">
+        <div class="row">
+          <div class="card" style="width: 18rem;">
+            <img th:src="${cliente.urlImg}" src="../static/img/coca.jpg" height="300px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 th:text="${cliente.nombre}" class="card-title"></h5>
+              <p th:text="${cliente.descripcion}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a th:href="@{/saludar/inicio}" href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>     -->  
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/clientes/save}" method="post">
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Nombre</label>
+            <input  type="text" class="form-control" name="nombre" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Apellidos</label>
+            <input  type="text" class="form-control" name="apellidos" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input  type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">            
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Numero</label>
+            <input  type="number" class="form-control" name="numero" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Direccion</label>
+            <input  type="text" class="form-control" name="direccion" id="exampleInput1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" name="vip" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Vip</label>
+          </div>
+          <a class="btn btn-primary" th:href="@{/clientes/list}" href="#" role="button">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

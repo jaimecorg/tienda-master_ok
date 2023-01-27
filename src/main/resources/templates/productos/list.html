@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+
+
+  <div class="container">
+    
+        <h1 th:text="#{productos.list.titulo}">Productos</h1>
+        <a class="btn btn-primary" th:text="#{productos.list.nuevoProducto}" th:href="@{/productos/create}" href="new.html"
+        role="button">
+        Crear</a>
+
+    <table class="table table-striped align-middle text-center">
+      <thead>
+        <tr>
+          <th scope="col" th:text="#{productos.list.imagen}">Imagen</th>  
+          <th scope="col" th:text="#{productos.list.codigo}">Codigo</th>
+          <th scope="col" th:text="#{productos.list.nombre}">Nombre</th>
+          <th scope="col" th:text="#{productos.list.descripcion}">Descripcion</th>
+          <th scope="col" th:text="#{productos.list.precio}">Precio</th>  
+          <th scope="col">---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="producto : ${productos}">
+          <td> <img th:src="'data:image/jpeg;base64,' + ${producto.imageView}" width="325em" src="" alt=""> </td>
+          <th scope="row" th:text="${producto.codigo}">#</th>
+          <td th:text="${producto.nombre}">---</td>
+          <td th:text="${producto.descripcion}">---</td>
+          <td th:text="${producto.precio}+€">---</td>  
+          <td>          
+            <a class="btn btn-primary" th:text="#{productos.list.editar}" th:href="@{/productos/edit?codigo=}+${producto.codigo}" href="edit.html"
+              role="button">
+              Editar</a>
+            <a class="btn btn-primary" th:text="#{productos.list.borrar}" th:href="@{/productos/delete/}+${producto.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>
+            <a class="btn btn-primary" th:href="@{/productos/cantidad?codigo=}+${producto.codigo}" href="cantidad.html"
+            role="button">
+            Añadir a cesta</a>
+          </td>
+        </tr>    
+      </tbody>
+    </table>
+    <div th:replace="commons/pagination :: pagination" class="container" />
+    <h5 th:text="#{productos.list.pie}"></h5>
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+</body>
+
+</html>

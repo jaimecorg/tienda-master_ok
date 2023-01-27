@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/login/login}" method="post">
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Nombre</label>
+            <input  type="text" class="form-control" name="nombre" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Contraseña</label>
+            <input  type="password" class="form-control" name="contrasena" id="exampleInput1">
+          </div>          
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <div th:if="${session}">
+          <div th:with="condicion = ${session.usuario}">
+              <p th:if="${condicion}" th:text="${session.usuario.nombre}"></p>
+              <p th:unless="${condicion}">sin session</p>
+          </div>
+        </div>
+        <div th:unless="${session}">sin session</div>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+</html>

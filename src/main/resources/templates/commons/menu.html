@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <div th:fragment="menu">
+    <!-- MENU PRINCIPAL -->
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Tienda</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" th:text="#{menu.home}" aria-current="page" th:href="@{/}" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:text="#{menu.productos}" th:href="@{/productos/list}"
+                href="../productos/list.html">Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:text="#{menu.clientes}" th:href="@{/clientes/list}"
+                href="../clientes/list.html">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/pedidos/list}"
+                href="../pedidos/list.html">Pedidos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/vendedores/list}"
+                href="../vendedores/list.html">Vendedores</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" th:text="#{menu.vendedores}" th:href="@{/vendedores/list}"
+                href="../vendedores/list.html">Vendedores</a>
+            </li>  -->           
+          </ul>
+              <!-- <a th:if="${condicion}" th:href="@{/login/logout}" href="#"><i style="background-color: gray; padding: 0.5em; border-radius: 5px; color: white;" class="bi bi-cart3"></i></a> -->
+              <a th:href="@{/cesta/list}" href="#"><i style="background-color: gray; padding: 0.5em; border-radius: 5px; color: white;" class="bi bi-cart3"></i></a>
+                
+          <div th:unless="${session}"></div>
+          
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                &#127760;
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/login/welcome?lang_config=es}" href="#"
+                  th:text="#{menu.idioma.espanol}">Español</a>
+                <a class="dropdown-item" th:href="@{/login/welcome?lang_config=en}" href="#"
+                  th:text="#{menu.idioma.ingles}">Inglés</a>
+              </div>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" th:placeholder="#{menu.buscar}" type="search" placeholder="Search" aria-label="Search">
+            <button th:text="#{menu.buscar}" class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+
+          <a th:href="@{/login/logout}" th:text="${session.usuario.nombre}" href="#"><i class="bi bi-box-arrow-left"></i>logout</a>
+        </div>
+      </div>
+    </nav>
+
+</body>
+
+</html>

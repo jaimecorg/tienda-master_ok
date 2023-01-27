@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+      <!-- CARD -->
+
+      <div class="container">
+        <div class="row">
+          <div class="card" style="width: 18rem;">
+            <img th:src="${producto.urlImg}" src="../static/img/coca.jpg" height="300px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 th:text="${producto.nombre}" class="card-title"></h5>
+              <p th:text="${producto.descripcion}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a th:href="@{/saludar/inicio}" href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+</html>

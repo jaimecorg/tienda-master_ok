@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/productos/update}" method="post" enctype="multipart/form-data" class="d-flex">
+          <div>
+            <img th:src="'data:image/jpeg;base64,' + ${producto.imageView}" width="325em" src="" alt="">
+            <label for="exampleImg">Imagen</label>
+            <input type="file" class="file-input" name="imagen" id="exampleImg" accept="image/png, image/jpeg">
+            <a class="btn btn-primary" th:href="@{/productos/list}" href="#" role="button">Volver</a>
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+          </div>
+          <div>
+            <input type="hidden" th:value="${producto.codigo}" name="codigo">
+            <div class="mb-3">
+              <label for="exampleInput1" class="form-label">Nombre</label>
+              <input th:value="${producto.nombre}" type="text" name="nombre" class="form-control" id="exampleInput1" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInput1" class="form-label">Descripcion</label>
+              <input th:value="${producto.descripcion}" type="text" name="descripcion" class="form-control" id="exampleInput1">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Precio</label>
+              <input th:value="${producto.precio}" type="text" class="form-control" name="precio" id="exampleInputPrecio1">            
+            </div>
+          </div>        
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

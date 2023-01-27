@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+      <div class="container">
+        <form style="width: 18em;" th:action="@{/vendedores/update}" method="post">
+          <input type="hidden" th:value="${vendedor.codigo}" name="codigo">
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Nombre</label>
+            <input th:value="${vendedor.nombre}" type="text" name="nombre" class="form-control" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInput1" class="form-label">Apellidos</label>
+            <input th:value="${vendedor.apellidos}" type="text" name="apellidos" class="form-control" id="exampleInput1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPuesto1" class="form-label">Puesto</label>
+            <input th:value="${vendedor.puesto}" type="text" class="form-control" name="puesto" id="exampleInputPuesto1" aria-describedby="puestoHelp">            
+          </div>          
+          <a class="btn btn-primary" th:href="@{/vendedores/list}" href="#" role="button">Cancelar</a>
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+        </form>
+      </div>
+      
+
+      <div th:replace="commons/footer :: footer" class="container" />
+</body>
+</html>

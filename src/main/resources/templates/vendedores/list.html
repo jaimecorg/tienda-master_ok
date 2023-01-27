@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- CARD -->
+
+  <div class="container">
+        <h1 th:text="#{vendedores.list.titulo}">Vendedores</h1>
+        <a class="btn btn-primary" th:text="#{vendedores.list.nuevoVendedor}" th:href="@{/vendedores/create}" href="new.html"
+        role="button">
+        Crear</a>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" th:text="#{vendedores.list.codigo}">Codigo</th>
+          <th scope="col" th:text="#{vendedores.list.nombre}">Nombre</th>
+          <th scope="col" th:text="#{vendedores.list.apellidos}">Apellidos</th>
+          <th scope="col" th:text="#{vendedores.list.puesto}">Puesto</th>
+          <th scope="col">---</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="vendedor : ${vendedores}">
+          <th scope="row" th:text="${vendedor.codigo}">#</th>
+          <td th:text="${vendedor.nombre}">---</td>
+          <td th:text="${vendedor.apellidos}">---</td>
+          <td th:text="${vendedor.puesto}">---</td>          
+          <td>          
+            <a class="btn btn-primary" th:text="#{vendedores.list.editar}" th:href="@{/vendedores/edit?codigo=}+${vendedor.codigo}" href="edit.html"
+              role="button">
+              Editar</a>
+            <a class="btn btn-primary" th:text="#{vendedores.list.borrar}" th:href="@{/vendedores/delete/}+${vendedor.codigo}" href="#" role="button"><i class="bi bi-trash"></i>Borrar</a>
+          </td>
+        </tr>       
+      </tbody>
+    </table>
+    <h5 th:text="#{vendedores.list.pie}"></h5>
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+</body>
+
+</html>
